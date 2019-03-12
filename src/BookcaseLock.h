@@ -6,6 +6,7 @@
 class BookcaseLock {
 public:
     BookcaseLock();
+    BookcaseLock(uint32_t timeout);
     virtual ~BookcaseLock();
     void Unlock();
     void UpdateState();
@@ -20,6 +21,7 @@ private:
     static const uint8_t led_pin = 1;
     static const uint8_t lock_pin = 3;
     uint64_t lastStateChangeTime = 0;
+    uint32_t lockOpenTimeout = 1200;
     LockState lockState = Closed;
 
     void OpenLock();

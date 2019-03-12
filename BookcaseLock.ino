@@ -5,12 +5,18 @@
 BookcaseLock lock;
 static const uint8_t key_pin = 2;
 
+
 void setup()
 {
-    lock = BookcaseLock();
+    lock = BookcaseLock(1200);
+    pinMode(key_pin, INPUT);
 }
+
 
 void loop()
 {
-    lock.UpdateState(digitalRead(key_pin));
+    if (digitalRead(key_pin) == HIGH)
+        lock.Unlock();
+
+    lock.UpdateState();
 }

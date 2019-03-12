@@ -8,6 +8,13 @@ BookcaseLock::BookcaseLock()
 }
 
 
+BookcaseLock::BookcaseLock(uint32_t timeout) : lockOpenTimeout(timeout)
+{
+    pinMode(led_pin, OUTPUT);
+    pinMode(lock_pin, OUTPUT);
+}
+
+
 BookcaseLock::~BookcaseLock() { }
 
 
@@ -29,7 +36,7 @@ void BookcaseLock::UpdateState()
         }
         case Open: {
             OpenLock();
-            if (millis() - lastStateChangeTime > 2000)
+            if (millis() - lastStateChangeTime > lockOpenTimeout)
                 lockState = Closing;
             break;
         }

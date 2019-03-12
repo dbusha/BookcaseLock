@@ -7,7 +7,7 @@ static const uint8_t key_pin = 2;
 
 void setup()
 {
-    lock = BookcaseLock();
+    lock = BookcaseLock(1200);
     pinMode(key_pin, INPUT);
 }
 
